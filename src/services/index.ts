@@ -11,6 +11,6 @@ export const leadApi = axios.create({
   baseURL: 'https://api.whatsapp.laks.net.br',
   headers: {
     'Content-Type': 'application/json',
-    apikey: `${process.env.API_KEY}`
+    apikey: `${import.meta.env.VITE_API_KEY}`
   }
 })
