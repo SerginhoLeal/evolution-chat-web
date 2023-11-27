@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// export const URL_TEST = 'http://localhost:3000';
-export const URL_TEST = 'https://evolution-chat.onrender.com';
-
 export const api = axios.create({
-  baseURL: `${URL_TEST}/api`
+  baseURL: `${import.meta.env.VITE_BASE_URL}`,
+  headers: {
+    'Content-Type': 'application/json',
+  }
 })
 
 export const leadApi = axios.create({
