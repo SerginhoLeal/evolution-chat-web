@@ -82,24 +82,5 @@ export const Container = styled.main`
       font-weight: 500;
       letter-spacing: 1px;
     }
-
-    button {
-      border: 0;
-      border-radius: 5px;
-      padding: 15px 30px;
-
-      margin-top: 10px;
-
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 1px;
-
-      color: #fff;
-      background-color: #4f65f1;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-      cursor: pointer;
-    }
-
   }
 `;

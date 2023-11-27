@@ -1,33 +1,29 @@
-import { useChat } from '../../context';
-
-import * as Styles from './styles';
+import React from 'react';
 
 import { FormLoginProps } from './types';
-import { URL_TEST, api } from '../../services';
+import { useChat } from '../../context';
+import { api } from '../../services';
+import { Button } from '../../common';
 
 import { BlobBlueTop, BlobBlue, BlobPinkBright, BlobPurpleBottom, BlobYellow } from '../../assets/svg';
-import { io } from 'socket.io-client';
 
-const socket = io(URL_TEST, { transports: ['websocket'] })
+import * as Styles from './styles';
 
 export default function Login(){
   const { setData } = useChat();
 
+  const [loading, setLoading] = React.useState(false);
+
   const onSubmit = async(evt: FormLoginProps) => {
     evt.preventDefault();
+    setLoading(true);
 
-    const { data } = await api.post('/login-user', {
+    api.post('/login-user', {
       name: evt.target['name'].value,
       number: evt.target['number'].value
-    });
-
-    // socket.emit('instance_connected', {
-    //   instance: 'instance',
-    //   message: 'Instance Connected',
-    //   status: true
-    // })
-
-    return setData(data)
+    })
+      .then(success => setData(success.data))
+      .finally(() => setLoading(false))
   };
 
   return (
@@ -46,8 +42,8 @@ export default function Login(){
 
         <input type='text' name='name' defaultValue='serginho' placeholder='Create an instance' />
         <input type='text' name='number' defaultValue='553175564133' placeholder='Create an instance' />
-        
-        <button type='submit'>Enviar</button>
+
+        <Button type='submit' title='login' isLoading={loading} />
 
       </form>
     </Styles.Container>
