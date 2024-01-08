@@ -1,70 +1,70 @@
-import { useState, ReactNode, createContext, useContext, useEffect } from 'react';
-import { URL_TEST, api, leadApi } from '../services';
+import { useState, createContext, useContext, useEffect } from 'react';
+import { socket } from '../services';
 
 import {
-  InstancesListProps
+  ContextProps,
+  ProviderProps,
+  DataProps
 } from './types';
-import { io } from 'socket.io-client';
 
-type DataProps = {
-  id: string;
-  name: string;
-  number: string;
-} | null;
-
-interface ContextProps {
-  data: DataProps;
-  setData: (value: DataProps) => void;
-
-  userId: string | null;
-  setUserId: (value: string) => void;
-
-  instancesList: InstancesListProps[];
-  setInstancesList: (instancesList: InstancesListProps[]) => void;
-}
-
-interface ProviderProps {
-  children: ReactNode;
-}
+import { LoginSubmit } from './login';
 
 const Contexts = createContext({} as ContextProps);
 
-const socket = io(URL_TEST, { transports: ['websocket'] })
-
 export const Provider = ({ children }: ProviderProps) => {
+  const [users, setUsers] = useState<Array<{ name: string, last_message: string, number: string }> | null>(null);
+
   const [data, setData] = useState<DataProps>(null);
+  const [contact, setContact] = useState(null);
+
   const [userId, setUserId] = useState<string | null>(null);
-  const [instancesList, setInstancesList] = useState<InstancesListProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   if (!data) return ;
+
+  //   (() => {
+  //     api
+  //       .get(`/find-instance?use_logged_id=${data?.id}`)
+  //       .then(({ data }) => setInstance(data.instance))
+  //       .catch(console.log)
+  //       .finally(() => setLoading(false))
+  //   })();
+
+  //   if (socket === null) return;
+
+  //   socket.on('status_message', console.log)
+
+  //   return () => {
+  //     socket.off('status_message');
+  //   }
+  // }, [data]);
 
   useEffect(() => {
-    if (!data) return ;
-
-    (async() => {
-      const axios = await api.get(`/find-instance?use_logged_id=${data?.id}`);
-
-      const array = axios.data as Array<InstancesListProps>;
-
-      array.map((log) => {
-        leadApi.get(`/instance/fetchInstances?instanceName=${log.instance_name}`)
-          .then(l => {
-            setInstancesList(prev => [...prev, { ...log, status: l.data.instance.status }])
-          })
-          .catch(console.log)
-
-      });
-    })();
-
     if (socket === null) return;
 
-    socket.on('status_message', console.log)
+    socket.on('users_on', setUsers);
 
     return () => {
-      socket.off('status_message');
-    }
-  }, [data]);
+      socket.off('users_on');
+    };
+  }, []);
+
+  const value = {
+    data,
+    contact,
+    setContact,
+    users,
+    setData,
+    userId,
+    setUserId,
+    loading,
+    LoginSubmit
+  };
 
   return (
-    <Contexts.Provider value={{ data, setData, userId, setUserId, instancesList, setInstancesList }}>
+    <Contexts.Provider value={value}>
       {children}
     </Contexts.Provider>
   )
