@@ -1,6 +1,6 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
-export const Container = styled.button`
+const prefix = css`
   display: flex;
 
   justify-content: center;
@@ -8,15 +8,20 @@ export const Container = styled.button`
 
   border: 0;
   border-radius: 3px;
+
+  font-size: 14px;
+
+  font-weight: 500;
+  letter-spacing: 1px;
+`;
+
+export const Container = styled.button`
+  ${prefix};
+
   padding: 15px 30px;
 
   margin-top: 10px;
 
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1px;
-
-  color: #fff;
   background-color: #4f65f1;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -24,9 +29,12 @@ export const Container = styled.button`
 
   cursor: pointer;
 
+  z-index: 10px;
+
   p {
     margin: 0;
     padding: 0;
+    color: #fff;
   }
 
   span {
@@ -49,5 +57,78 @@ export const Container = styled.button`
     100% {
       transform: rotate(360deg);
     }
+  }
+`;
+
+export const Component = styled.div`
+  position: relative;
+
+  margin: 0 0 0 10px;
+
+  min-width: 50px;
+  height: 50px;
+
+  border-radius: 3px;
+
+  background-color: #f1f1f1;
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  cursor: pointer;
+
+  background-color: transparent;
+`;
+
+export const Options = styled.span`
+  position: absolute;
+
+  bottom: 55px;
+
+  /* min-width: 50px;
+  min-height: 50px; */
+
+  width: 500px;
+  /* height: 400px; */
+
+  border-radius: 3px;
+
+  /* background-color: #f1f1f1; */
+
+  /* backdrop-filter: blur(2px); */
+
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 2px; */
+`;
+
+export const OptionsFiles = styled.span`
+  position: absolute;
+
+  bottom: 55px;
+
+  /* min-width: 50px;
+  min-height: 50px; */
+
+  width: 50px;
+
+  border-radius: 3px;
+
+  background-color: #f1f1f1;
+
+  /* backdrop-filter: blur(2px); */
+
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 2px; */
+
+  button {
+    width: 50px;
+    height: 50px;
+
+    border: 0;
+    background-color: transparent;
+
+    cursor: pointer;
   }
 `;
