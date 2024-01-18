@@ -15,21 +15,26 @@ const prefix = css`
   letter-spacing: 1px;
 `;
 
-export const Container = styled.button`
+interface ButtonProps {
+  standard: string,
+}
+
+export const Container = styled.button<ButtonProps>`
   ${prefix};
+
+  ${({ standard }) => css`
+    background-color: ${standard};
+  `};
 
   padding: 15px 30px;
 
   margin-top: 10px;
 
-  background-color: #4f65f1;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   height: 40px;
 
   cursor: pointer;
-
-  z-index: 10px;
 
   p {
     margin: 0;
@@ -74,6 +79,11 @@ export const Component = styled.div`
 `;
 
 export const Button = styled.button`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   height: 100%;
 
@@ -104,31 +114,17 @@ export const Options = styled.span`
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 2px; */
 `;
 
-export const OptionsFiles = styled.span`
-  position: absolute;
+export const SelectFiles = styled.input`
+  ${prefix};
 
-  bottom: 55px;
+  padding: 15px 30px;
 
-  /* min-width: 50px;
-  min-height: 50px; */
+  margin-top: 10px;
 
-  width: 50px;
+  background-color: #4f65f1;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-  border-radius: 3px;
+  height: 40px;
 
-  background-color: #f1f1f1;
-
-  /* backdrop-filter: blur(2px); */
-
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 2px; */
-
-  button {
-    width: 50px;
-    height: 50px;
-
-    border: 0;
-    background-color: transparent;
-
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;

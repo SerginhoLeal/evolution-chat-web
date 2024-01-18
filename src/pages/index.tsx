@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter, redirect } from "react-router-dom";
 
 import Login from './login';
-import Chat from './chat';
+import Home from './home';
 
 import { useChat } from "../context";
 
@@ -17,7 +17,7 @@ export default function Routers(){
       path: '/',
       loader: () => {
         if (data) {
-          return redirect("/chat");
+          return redirect("/home");
         } else {
           return redirect("/login");
         }
@@ -28,14 +28,14 @@ export default function Routers(){
       path: '/login',
       loader: () => {
         if (data) {
-          return redirect("/chat");
+          return redirect("/home");
         }
         return null;
       }
     },
     {
-      element: <Chat />,
-      path: '/chat',
+      element: <Home />,
+      path: '/home',
       loader: () => {
         if (!data) {
           return redirect("/login");
@@ -43,16 +43,16 @@ export default function Routers(){
         return null;
       }
     },
-    {
-      element: <Chat />,
-      path: '/chat/:chat_id',
-      loader: () => {
-        if (!data) {
-          return redirect("/login");
-        }
-        return null;
-      }
-    }
+    // {
+    //   element: <Chat />,
+    //   path: '/chat/:room',
+    //   loader: () => {
+    //     if (!data) {
+    //       return redirect("/login");
+    //     }
+    //     return null;
+    //   }
+    // }
   ]);
 
   return <RouterProvider router={router} />;

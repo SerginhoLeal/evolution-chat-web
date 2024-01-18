@@ -22,8 +22,10 @@
     "baseUrl": ".",
     "paths": {
       "@interface": ["./src/interface"],
-      "@common": ["./src/common"],
       "@services": ["./src/services"],
+      "@common": ["./src/common"],
+      "@context": ["./src/context"],
+      "@hooks": ["./src/hooks"],
     },
   },
   "include": ["src"],

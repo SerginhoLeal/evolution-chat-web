@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const Background = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const Background = styled.div`
   }
 `;
 
-export const Container = styled.main`
+export const Container = styled.article`
   display: flex;
 
   width: 100%;
@@ -46,27 +46,19 @@ export const Container = styled.main`
 
   position: relative;
 
-  .logo {
-    height: 2em;
-    padding: 1em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
-export const Content = styled.article`
+export const Empty = styled.section`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  padding: 20px;
 
-  background-color: #ffffffaa;
-  backdrop-filter: blur(3px);
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  backdrop-filter: blur(1px);
+  background-color: rgba(255, 255, 255, 0.5);
 `;

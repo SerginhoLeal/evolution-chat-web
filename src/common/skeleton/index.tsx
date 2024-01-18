@@ -23,7 +23,7 @@ const Container = styled.div<Props>`
 
   background: #eeeeeeaa;
   background: linear-gradient(110deg, #ecececaa 8%, #f5f5f5aa 18%, #ecececaa 33%);
-  border-radius: 5px;
+  border-radius: 8px;
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
 

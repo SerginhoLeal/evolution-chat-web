@@ -14,6 +14,19 @@ export const Container = styled.aside`
   background-color: #252552aa;
   backdrop-filter: blur(3px);
 
+  transition: 1s;
+  overflow: hidden;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
   #button_instance {
     display: flex;
 
@@ -64,6 +77,16 @@ export const Container = styled.aside`
   .logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
+
+  @media(max-width: 700px) {
+    min-width: 60px;
+    .react {
+      display: none;
+    }
+    .vite {
+      display: none;
+    }
+  }
 `;
 
 export const Nav = styled.nav`
@@ -104,7 +127,7 @@ export const Contact = styled.button`
 
   width: 100%;
 
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   cursor: pointer;
 
@@ -113,42 +136,77 @@ export const Contact = styled.button`
     padding: 0;
   }
 
-  h3 {
-    font-size: 13px;
-    margin-bottom: 5px;
-  }
-  
-  p {
-    font-size: 11px;
-    font-weight: 200;
-    color: #f1f1f1;
-  }
-
-  img {
-    width: 50px;
-    border-radius: 30px;
-  }
-
-  span {
-    display: flex;
-
-    height: 100%;
-    margin-left: 10px;
-
-    flex-direction: column;
-    text-align: start;
-    justify-content: center;
-  }
-
   span:nth-child(2) {
     width: 65%;
   }
 
-  div {
-    display: flex;
+  @media(max-width: 700px) {
+    margin-bottom: 5px;
+  }
+`;
 
-    width: 100%;
+export const Image = styled.div`
+  display: flex;
 
-    justify-content: space-between;
+  height: 100%;
+
+  img {
+    width: 50px;
+    border-radius: 30px;
+    object-fit: cover;
+  }
+`;
+
+export const Info = styled.div`
+  display: flex;
+
+  height: 100%;
+  width: 100%;
+  margin-left: 10px;
+
+  flex-direction: column;
+  text-align: start;
+  justify-content: center;
+
+  h3 {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  @media(max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const DataUser = styled.div`
+  display: flex;
+  align-items: end;
+
+  width: 100%;
+
+  justify-content: space-between;
+
+  span {
+    max-width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: green;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 11px;
+    font-weight: 200;
+
+    color: #f1f1f1;
+
+    /* margin-left: 5px; */
+
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
   }
 `;

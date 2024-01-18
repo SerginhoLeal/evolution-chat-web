@@ -10,122 +10,99 @@ export const Container = styled.div`
   overflow-x: auto;
 `;
 
-export const Box = styled.div<{ sender: string }>`
+interface BoxProps {
+  sender: boolean;
+  height?: number;
+  // width: number;
+}
+
+export const Box = styled.div<BoxProps>`
   display: flex;
 
   align-items: center;
 
-  /* min-height: 50px; */
-
   ${({ sender }) => css`
-    justify-content: ${sender === 'true' ? 'end': 'start'};
+    justify-content: ${sender ? 'end': 'start'};
+  `}
+`;
+
+const prefixFile = css`
+  display: flex;
+  position: relative;
+  
+  flex-direction: column;
+
+  border-radius: 10px;
+
+  padding: 3px;
+  margin: 3px 10px;
+
+  outline: 0;
+
+  p {
+    margin: 0;
+    padding: 5px 0;
+
+    font-size: 14px;
+
+    color: #fff;
+  }
+
+  span {
+    position: absolute;
+    /* z-index: 1; */
+  }
+`;
+
+export const ImageMessage = styled.button<BoxProps>`
+  ${prefixFile};
+
+  border: 0;
+  cursor: pointer;
+
+  ${({ theme, sender }) => css`
+    background-color: ${theme.color[sender ? 'primary' : 'secondary']};
   `}
 
-  div {
-    display: flex;
-    position: relative;
+  img {
+    width: 300px;
+    border-radius: 8px;
+    z-index: 1;
+  }
 
-    border-radius: 5px;
-
-    padding: 10px;
-    margin: 5px 10px;
-
-    ${({ sender }) => css`
-      background-color: ${sender === 'true' ? '#4CAF50' : '#353535'};
-    `}
-
+  @media(max-width: 700px) {
     img {
-      max-width: 200px;
-      border-radius: 3px;
-    }
-
-    p {
-      margin: 0;
-      padding: 0;
-
-      font-size: 14px;
-
-      color: #fff;
-    }
-
-    span {
-      position: absolute;
-
-      border-radius: 5px;
-
-      ${({ sender }) => css`
-        ${sender === 'true' ? css`
-          top: 0px;
-          right: -5px;
-
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent; 
-
-          border-left: 10px solid #4CAF50;
-        ` : css`
-          top: 0px;
-          left: -5px;
-
-          border-top: 5px solid transparent;
-          border-bottom: 5px solid transparent; 
-
-          border-right: 10px solid #353535;
-        `}
-      `}
-
+      width: 300px;
+      border-radius: 8px;
+      z-index: 1;
     }
   }
 `;
 
-export const TextBox = styled.footer`
-  display: flex;
+export const VideoMessage = styled.button<BoxProps>`
+  ${prefixFile};
 
-  width: 100%;
-  min-height: 60px;
+  border: 0;
+  cursor: pointer;
+
+  ${({ theme, sender }) => css`
+    background-color: ${theme.color[sender ? 'primary' : 'secondary']};
+  `}
+
+  video {
+    width: 300px;
+    border-radius: 8px;
+    z-index: 1;
+  }
 `;
 
-export const Input = styled.form`
-  display: flex;
-
-  width: 100%;
-  height: 50px;
-
-  margin: 0 10px;
+export const Message = styled.div<BoxProps>`
+  ${prefixFile};
 
   border-radius: 5px;
+  padding: 0 10px;
 
-  background-color: #f1f1f1aa;
-
-  input {
-    width: 100%;
-    height: 100%;
-
-    border: 0;
-    outline: none;
-    background-color: transparent;
-
-    font-size: 15px;
-
-    padding: 0 10px;
-
-    color: #303030;
-  }
-
-  button {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    min-width: 50px;
-    height: 50px;
-
-    border: 0;
-    border-radius: 3px;
-
-    cursor: pointer;
-
-    background-color: transparent;
-  }
+  ${({ theme, sender }) => css`
+    background-color: ${theme.color[sender ? 'primary' : 'secondary']};
+  `}
 `;
-

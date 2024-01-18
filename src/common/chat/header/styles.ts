@@ -5,11 +5,16 @@ export const Container = styled.header`
   position: relative;
 
   align-items: center;
+  justify-content: space-between;
 
   width: 100%;
   min-height: 60px;
 
   background-color: #f1f1f1aa;
+`;
+
+export const ContentFriend = styled.div`
+  display: flex;
 `;
 
 export const ContainerImage = styled.div`
@@ -48,4 +53,16 @@ export const Text = styled.p`
 
   font-size: 11px;
   font-weight: 200;
+`;
+
+export const Settings = styled.button`
+  border: 0;
+  background-color: transparent;
+
+  width: 50px;
+  height: 50px;
+
+  margin-right: 1%;
+
+  cursor: pointer;
 `;

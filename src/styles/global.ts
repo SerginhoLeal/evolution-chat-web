@@ -1,5 +1,6 @@
 // globalStyles.js
 import { createGlobalStyle } from 'styled-components';
+
 const GlobalStyle = createGlobalStyle`
   :root {
     font-family: 'Comfortaa', sans-serif;
@@ -16,6 +17,25 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
     a {
@@ -37,6 +57,11 @@ const GlobalStyle = createGlobalStyle`
 
     button {
       font-family: 'Comfortaa', sans-serif;
+      color: #fff;
+    }
+
+    p {
+      color: #303030;
     }
 
     /* h1 {

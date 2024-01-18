@@ -4,37 +4,61 @@ import { FormProps } from "@interface";
 export type DataProps = {
   id: string;
   name: string;
+  email: string;
+  photo: string;
   number: string;
+  nickname: string;
 } | null;
 
-export interface InstancesProps {
+export interface Friends {
   id: string;
-  instance_name: string;
-  chat: {
+  user_id: string;
+  target_id: string;
+  message_id: null,
+  profile: {
     id: string;
-    created_at: string;
-    contact: {
-      name: string;
-      number: string;
-    };
-  }[];
+    nickname: string;
+    photo: string;
+  },
+  target: {
+    id: string;
+    nickname: string;
+    photo: string;
+  },
+  user: {
+    id: string;
+    nickname: string;
+    photo: string;
+  },
+  messages: {
+    message: string;
+    created_at: Date;
+    message_type: 'image' | 'video' | 'text';
+  }[]
 }
 
+export interface RoomProps {
+  contact: {
+    profile: {
+      name: string;
+      photo: string;
+      nickname: string;
+    }
+  } | null;
+  room: string | null;
+  messages: Array<object> | null;
+}
 export interface ContextProps {
-  users: Array<{ name: string, last_message: string, number: string }>;
+  friends: Array<Friends>;
 
   data: DataProps;
   setData: (value: DataProps) => void;
 
-  userId: string | null;
-  setUserId: (value: string) => void;
+  room: RoomProps;
+  setRoom: (contact: RoomProps) => void;
 
-  contact: any;
-  setContact: (contact: any) => void;
-
-  loading: boolean;
-
-  LoginSubmit: (v: FormProps) => void;
+  theme: any;
+  setTheme: (theme: any) => void;
 }
 
 export interface ProviderProps {
